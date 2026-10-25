@@ -2,7 +2,9 @@
 
 # Stage 1: Install dependencies
 FROM node:24-alpine AS deps
-RUN apk add --no-cache libc6-compat
+# Official CDN often fails TLS from this network; use a reachable mirror.
+RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories \
+    && apk add --no-cache libc6-compat
 WORKDIR /app
 
 # Copy package files

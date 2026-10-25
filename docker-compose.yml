@@ -6,7 +6,8 @@ services:
       # Uncomment below for subdirectory deployment
       # args:
       #   - NEXT_PUBLIC_BASE_PATH=/nextaidrawio
-    ports: ["3000:3000"]
+    # Host 3847 → container 3000 (avoid clashing with other local apps on 3000)
+    ports: ["3847:3000"]
     env_file: .env
     volumes:
       # Persists admin panel settings (data/settings.json)
